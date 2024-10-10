@@ -6,7 +6,7 @@
 import math
 
 
-def floor(n: float) -> float:
+def floor(n: float) -> int:
     """The float would now be returned
        after the annotation
     """
