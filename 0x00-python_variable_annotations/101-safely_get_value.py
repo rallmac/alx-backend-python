@@ -4,13 +4,17 @@
     and the default value
 """
 
-from typing import TypeVar, Mapping, Any
+from typing import TypeVar, Mapping, Any, Union
 
 
 T = TypeVar('T')
 
 
-def safely_get_value(dct: Mapping[Any, T], key: Any, default: T = None) -> T:
+def safely_get_value(
+    dct: Mapping,
+    key: Any,
+    default: Union[T, None] = None
+) -> Union[Any, T]:
     """This module takes in dictionary with keys of any
        type and any value and key of any type and default
        value and returns a value of any type
