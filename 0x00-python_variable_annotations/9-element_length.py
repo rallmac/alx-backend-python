@@ -4,10 +4,10 @@
     length of the list
 """
 
-from typing import List, Tuple
+from typing import Iterable, List, Tuple, Sequence
 
 
-def element_length(lst: List[str]) -> List[Tuple[str, int]]:
+def element_length(lst: Iterable[Sequence]) -> List[Tuple[Sequence, int]]:
     """this function takes a list of strings (lst) as input
        and returns a list of tuples, where each tuple contains
        a string and its length.
