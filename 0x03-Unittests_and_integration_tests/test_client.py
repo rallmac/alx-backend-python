@@ -14,7 +14,7 @@ class TestAccessNestedMap(unittest.TestCase):
     @parameterized.expand([
         ({"a": 1}, ("a",), 1),
         ({"a": {"b": 2}}, ("a",), {"b": 2}),
-        ({"a": {"b", "c"}}, ("a", "b"), 2),
+        ({"a": {"b": 2, "c": 3}}, ("a", "b"), 2),
     ])
     def test_access_nested_map(self, nested_map, path, expected):
         """This method tests the parameterized expand function"""
@@ -33,7 +33,7 @@ class TestAccessNestedMap(unittest.TestCase):
 
 class TestGetJson(unittest.TestCase):
     """This class implements TestGetJson class and inherits
-       from unitest.TestCase
+       from unittest.TestCase
     """
 
     @parameterized.expand([
@@ -89,15 +89,16 @@ class TestGithubOrgClient(unittest.TestCase):
     @patch('client.get_json')
     def test_public_repos(self, mock_get_json):
         """Test public_repos method of GithubOrgClient"""
-        # Arrange: define mock data for get_json
-        # and _public_repos_url
+        # Arrange: define mock data for get_json and _public_repos_url
         mock_payload = [
-            {"name": "repo1"}, {"name": "repo2"}, {"name": "repo3"}
+            {"name": "repo1"},
+            {"name": "repo2"},
+            {"name": "repo3"}
         ]
         mock_get_json.return_value = mock_payload
 
         with patch.object(
-            GithubOrgClient, '_public_repos_url', new_callable=Moc
+            GithubOrgClient, '_public_repos_url', new_callable=Mock
         ) as mock_public_repos_url:
             mock_public_repos_url.return_value = (
                 "https://api.github.com/orgs/test-org/repos"
